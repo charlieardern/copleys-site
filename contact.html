@@ -97,7 +97,19 @@
       <span class="eyebrow">Send a message</span>
       <h2>Request a call back</h2>
       <p class="lead" style="margin-bottom:24px">Tell us a little about how we can help and we'll get back to you promptly.</p>
-      <form class="form-card" id="contact-form" novalidate>
+      <!-- EmailJS setup:
+           1. Replace the three values below with the IDs from your EmailJS dashboard
+              (Account → API Keys for the public key; Email Services and Email Templates for the IDs).
+           2. Messages are delivered to whatever the EMAIL TEMPLATE's "To Email" field is set to.
+              Set it to: charlie.ardern@gmail.com  (hardcode it in the template — do NOT take the
+              recipient from the form, or the key could be abused as a spam relay).
+           3. Security: the public key is necessarily visible in the page (that is how EmailJS works).
+              To stop others using it, add your live domain under EmailJS → Account → Security →
+              "Allowed origins/domains". A honeypot below also blocks automated spam bots. -->
+      <form class="form-card" id="contact-form" novalidate
+            data-emailjs-public-key="YOUR_PUBLIC_KEY"
+            data-emailjs-service="YOUR_SERVICE_ID"
+            data-emailjs-template="YOUR_TEMPLATE_ID">
         <div class="grid grid-2" style="gap:0 18px">
           <div class="field"><label for="name">Full name</label><input id="name" name="name" type="text" required placeholder="Jane Smith"></div>
           <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="01480 000000"></div>
@@ -120,11 +132,16 @@
           </select>
         </div>
         <div class="field"><label for="message">Your message</label><textarea id="message" name="message" required placeholder="Briefly describe your matter…"></textarea></div>
+        <!-- Honeypot: hidden from real users; bots that fill it are silently rejected -->
+        <div class="hp-field" aria-hidden="true">
+          <label>Do not fill this in<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+        </div>
         <button type="submit" class="btn btn--primary" style="width:100%">Send message
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
         </button>
         <p class="form-note">By submitting this form you agree to us using your details to respond to your enquiry, in line with our <a href="privacy.html">Privacy Policy</a>. Please do not include confidential information.</p>
-        <div class="form-success" role="status">Thank you — your message has been noted. A member of our team will be in touch shortly.</div>
+        <div class="form-success" role="status">Thank you — your message has been sent. A member of our team will be in touch shortly.</div>
+        <div class="form-error" role="alert"></div>
       </form>
     </div>
     <div class="reveal">
@@ -170,6 +187,8 @@
     </div>
   </div>
 </footer>
+<!-- EmailJS SDK — powers the "Request a call back" form -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
