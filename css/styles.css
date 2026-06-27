@@ -622,6 +622,6 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-4
   .contact-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   body { font-size: 16px; }
-  /* pull the hero building image in from the far right so it sits more centrally */
-  .hero::before { background-position: 32% center; }
+  /* pull the hero building image in from the far right to ~75% across */
+  .hero::before { background-position: 75% center; }
 }
