@@ -103,7 +103,17 @@ p:last-child { margin-bottom: 0; }
   border: 1.5px solid transparent; cursor: pointer;
   transition: transform .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease), color .2s var(--ease);
   white-space: nowrap;
+  position: relative; overflow: hidden; isolation: isolate;
 }
+/* light sheen that sweeps across on hover */
+.btn::before {
+  content: ""; position: absolute; top: 0; left: -120%; z-index: -1;
+  width: 55%; height: 100%; transform: skewX(-20deg);
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.4), transparent);
+  transition: left .6s var(--ease);
+}
+.btn:hover::before { left: 150%; }
+.btn:active { transform: translateY(0) scale(.98); }
 .btn svg { width: 18px; height: 18px; }
 .btn--primary { background: var(--blue); color: #fff; box-shadow: 0 8px 20px rgba(22,92,161,.28); }
 .btn--primary:hover { background: var(--blue-700); color: #fff; transform: translateY(-2px); box-shadow: 0 12px 26px rgba(22,92,161,.34); }
@@ -521,12 +531,52 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-4
 /* ==========================================================================
    Reveal animation
    ========================================================================== */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
-.reveal.in { opacity: 1; transform: none; }
+.reveal { opacity: 0; transform: translateY(28px); filter: blur(3px); transition: opacity .7s var(--ease), transform .7s var(--ease), filter .7s var(--ease); }
+.reveal.in { opacity: 1; transform: none; filter: none; }
+.reveal--left  { transform: translateX(-34px); }
+.reveal--right { transform: translateX(34px); }
+.reveal--scale { transform: scale(.94); }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal { opacity: 1; transform: none; filter: none; }
 }
+
+/* ==========================================================================
+   Interactive flourishes
+   ========================================================================== */
+/* Scroll progress indicator (element injected by JS) */
+.scroll-progress {
+  position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 200;
+  transform: scaleX(0); transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--blue), var(--gold));
+  pointer-events: none; will-change: transform;
+}
+
+/* Cursor-follow spotlight on cards (uses --mx/--my set by JS) */
+.svc-card, .profile { position: relative; isolation: isolate; }
+.svc-card::before, .profile::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(22,92,161,.13), transparent 65%);
+  opacity: 0; transition: opacity .35s var(--ease);
+}
+.svc-card:hover::before, .profile:hover::before { opacity: 1; }
+/* warmer, blue-tinted lift on the service cards */
+.svc-card:hover { box-shadow: 0 18px 44px rgba(22,92,161,.16); }
+
+/* Ambient drift behind the hero glow */
+@keyframes hero-drift {
+  0%, 100% { background-position: 0 0, 0 0, 0 0; }
+  50%      { background-position: 46px -26px, 0 0, 0 0; }
+}
+.hero::after { animation: hero-drift 16s ease-in-out infinite; }
+
+/* Animated underline on footer & breadcrumb links */
+.footer-links a, .breadcrumb a { position: relative; }
+.footer-links a::after, .breadcrumb a::after {
+  content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px;
+  background: currentColor; transition: width .25s var(--ease);
+}
+.footer-links a:hover::after, .breadcrumb a:hover::after { width: 100%; }
 
 /* ==========================================================================
    Responsive

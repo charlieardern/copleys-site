@@ -17,15 +17,36 @@
     });
   }
 
-  /* Sticky header shadow */
+  /* Sticky header + scroll progress bar */
   var header = document.querySelector(".site-header");
-  if (header) {
-    var onScroll = function () {
-      header.classList.toggle("is-stuck", window.scrollY > 8);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
+  var progress = document.createElement("div");
+  progress.className = "scroll-progress";
+  document.body.appendChild(progress);
+
+  var ticking = false;
+  var onScroll = function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      if (header) { header.classList.toggle("is-stuck", window.scrollY > 8); }
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - doc.clientHeight;
+      progress.style.transform = "scaleX(" + (max > 0 ? doc.scrollTop / max : 0) + ")";
+      ticking = false;
+    });
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+
+  /* Cursor-follow spotlight on cards */
+  document.querySelectorAll(".svc-card, .profile").forEach(function (card) {
+    card.addEventListener("pointermove", function (e) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      card.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+  });
 
   /* Scroll reveal */
   var reveals = document.querySelectorAll(".reveal");
