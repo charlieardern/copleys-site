@@ -154,8 +154,8 @@ p:last-child { margin-bottom: 0; }
   font-weight: 500; font-size: .97rem; color: var(--ink);
   position: relative; white-space: nowrap;
 }
-.nav-links > li > a:hover,
-.nav-links > li > a[aria-current="page"] { color: var(--blue); background: var(--bg-soft); }
+.nav-links > li > a:hover { color: var(--blue); background: var(--bg-soft); }
+.nav-links > li > a[aria-current="page"] { color: var(--blue); }
 .nav-links > li > a[aria-current="page"]::after {
   content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 2px; background: var(--gold); border-radius: 2px;
   transform: none; /* override the .has-sub caret rotate so the underline stays horizontal */
@@ -174,11 +174,8 @@ p:last-child { margin-bottom: 0; }
   .nav-menu { display: contents; }                 /* hoist lists + button onto the row */
   .brand {
     order: 0; margin-right: auto;                   /* pin logo left, push nav right */
-    align-self: flex-start;                         /* top-align so the plate drops down */
     display: flex; align-items: center; justify-content: center;
-    height: 128px; padding: 0 30px;                 /* taller than the 90px bar → ~38px overhang */
-    background: #fff; border-radius: 0 0 16px 16px;
-    box-shadow: 0 16px 26px rgba(13,39,64,.07);
+    padding: 24px 30px;
     position: relative; z-index: 3;
   }
   .brand img { height: 100px; }                     /* big, clear logo */
