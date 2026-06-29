@@ -1,4 +1,4 @@
-/* Copleys Solicitors — interactions */
+/* Copleys Solicitors, interactions */
 (function () {
   "use strict";
 
@@ -81,7 +81,7 @@
     });
   });
 
-  /* Contact form — sends via EmailJS (https://www.emailjs.com) */
+  /* Contact form, sends via EmailJS (https://www.emailjs.com) */
   var form = document.querySelector("#contact-form");
   if (form) {
     var serviceID = form.getAttribute("data-emailjs-service");
@@ -113,7 +113,7 @@
       if (errBox) errBox.classList.remove("show");
 
       /* Honeypot: a real user can't see/fill this field, so if it has a value
-         it's a bot — quietly show success without sending anything. */
+         it's a bot, quietly show success without sending anything. */
       var honeypot = form.querySelector("[name=company]");
       if (honeypot && honeypot.value) {
         if (note) note.classList.add("show");

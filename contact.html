@@ -99,9 +99,9 @@
       <p class="lead" style="margin-bottom:24px">Tell us a little about how we can help and we'll get back to you promptly.</p>
       <!-- EmailJS setup:
            1. Replace the three values below with the IDs from your EmailJS dashboard
-              (Account → API Keys for the public key; Email Services and Email Templates for the IDs).
+              (Account → API Keys for the public key. Email Services and Email Templates for the IDs).
            2. Messages are delivered to whatever the EMAIL TEMPLATE's "To Email" field is set to.
-              Set it to: charlie.ardern@gmail.com  (hardcode it in the template — do NOT take the
+              Set it to: charlie.ardern@gmail.com  (hardcode it in the template. Do NOT take the
               recipient from the form, or the key could be abused as a spam relay).
            3. Security: the public key is necessarily visible in the page (that is how EmailJS works).
               To stop others using it, add your live domain under EmailJS → Account → Security →
@@ -132,7 +132,7 @@
           </select>
         </div>
         <div class="field"><label for="message">Your message</label><textarea id="message" name="message" required placeholder="Briefly describe your matter…"></textarea></div>
-        <!-- Honeypot: hidden from real users; bots that fill it are silently rejected -->
+        <!-- Honeypot: hidden from real users. Bots that fill it are silently rejected -->
         <div class="hp-field" aria-hidden="true">
           <label>Do not fill this in<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
         </div>
@@ -140,7 +140,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
         </button>
         <p class="form-note">By submitting this form you agree to us using your details to respond to your enquiry, in line with our <a href="privacy.html">Privacy Policy</a>. Please do not include confidential information.</p>
-        <div class="form-success" role="status">Thank you — your message has been sent. A member of our team will be in touch shortly.</div>
+        <div class="form-success" role="status">Thank you, your message has been sent. A member of our team will be in touch shortly.</div>
         <div class="form-error" role="alert"></div>
       </form>
     </div>
@@ -150,11 +150,11 @@
       <p class="lead" style="margin-bottom:24px">Two offices in the heart of Cambridgeshire, easy to reach from across the region.</p>
       <div style="display:grid;gap:20px">
         <div>
-          <h3 style="font-size:1.05rem;margin-bottom:10px">Huntingdon — 28 High Street</h3>
+          <h3 style="font-size:1.05rem;margin-bottom:10px">Huntingdon, 28 High Street</h3>
           <iframe class="map-frame" title="Map of Huntingdon office" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=28+High+Street+Huntingdon+PE29+3TH&output=embed"></iframe>
         </div>
         <div>
-          <h3 style="font-size:1.05rem;margin-bottom:10px">St Ives — Red House, 10 Market Hill</h3>
+          <h3 style="font-size:1.05rem;margin-bottom:10px">St Ives, Red House, 10 Market Hill</h3>
           <iframe class="map-frame" title="Map of St Ives office" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Red+House+10+Market+Hill+St+Ives+PE27+5AW&output=embed"></iframe>
         </div>
       </div>
@@ -187,7 +187,7 @@
     </div>
   </div>
 </footer>
-<!-- EmailJS SDK — powers the "Request a call back" form -->
+<!-- EmailJS SDK, powers the "Request a call back" form -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="js/main.js"></script>
 </body>

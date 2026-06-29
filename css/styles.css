@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Copleys Solicitors — modern rebuild
+   Copleys Solicitors, modern rebuild
    Brand blue sampled from logo: #165CA1
    ========================================================================== */
 
@@ -590,7 +590,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-4
   .topbar { display: none; }
   .burger { display: block; order: 3; }
   /* backdrop-filter creates a containing block for fixed children, which would
-     trap the full-screen mobile menu inside the header — disable it on mobile */
+     trap the full-screen mobile menu inside the header, disable it on mobile */
   .site-header { backdrop-filter: none; -webkit-backdrop-filter: none; background: #fff; }
   .nav { display: flex; align-items: center; justify-content: space-between; min-height: 84px; }
   .brand { order: 1; }
